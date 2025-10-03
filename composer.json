@@ -13,7 +13,6 @@
         "phpunit/phpunit": "^9.6"
     },
     "config": {
-        "vendor-dir": "Vendor/",
         "sort-packages": true,
         "allow-plugins": {
             "composer/installers": true,
@@ -22,7 +21,7 @@
     },
     "extra": {
         "installer-paths": {
-            "Plugin/{$name}/": ["type:cakephp-plugin"]
+            "plugins/{$name}/": ["type:cakephp-plugin"]
         }
     }
 }

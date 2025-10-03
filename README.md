@@ -4,73 +4,206 @@
 [![Packagist Version](https://img.shields.io/packagist/v/friendsofcake2/app?label=Packagist)](https://packagist.org/packages/friendsofcake2/app)
 [![PHP](https://img.shields.io/packagist/dependency-v/friendsofcake2/app/php?logo=php&logoColor=%23FFFFFF&label=PHP&labelColor=%23777BB4&color=%23FFFFFF)](https://packagist.org/packages/friendsofcake2/app)
 
-This is the application skeleton for [CakePHP 2.x Community Maintained Fork](https://github.com/friendsofcake2/cakephp).
+A reference implementation for CakePHP 2.x applications using a modern, CakePHP 5.x-compatible directory structure.
+
+> [!IMPORTANT]
+> **This skeleton demonstrates a two-phase migration strategy:**
+>
+> 1. **Phase 1 (Now):** Restructure your CakePHP 2.x app to use this modern directory layout - while still running CakePHP 2.x
+> 2. **Phase 2 (Future):** Upgrade to CakePHP 5.x - with minimal structural changes needed
+>
+> This approach separates "directory restructuring" from "framework upgrade", reducing risk and complexity.
 
 > [!WARNING]
-> **Do not use CakePHP 2.x for new projects!** This fork is only for maintaining existing legacy applications.
-> For new projects, please use [CakePHP 5.x](https://cakephp.org/) which has modern PHP support, better performance, and active development.
+> **CakePHP 2.x is for legacy maintenance only.**
+> For new projects, use [CakePHP 5.x](https://cakephp.org/) instead.
+
+## Two-Phase Migration Strategy
+
+### Why Two Phases?
+
+Migrating directly from traditional CakePHP 2.x to CakePHP 5.x means tackling two massive changes simultaneously:
+
+1. **Directory restructuring** - `app/Config/` → `config/`, `app/View/` → `templates/`, etc.
+2. **Framework API changes** - Updated class names, methods, patterns, etc.
+
+**Doing both at once is risky and time-consuming.**
+
+### The Better Approach
+
+**Phase 1: Restructure (CakePHP 2.x → CakePHP 2.x)**
+- Keep using CakePHP 2.x (same APIs, same behavior)
+- Only change directory structure to match CakePHP 5.x layout
+- Lower risk - app continues to work the same way
+- Can be done gradually over time
+
+**Phase 2: Upgrade (CakePHP 2.x → CakePHP 5.x)**
+- Structure is already correct
+- Focus only on code/API changes
+- Much faster and easier
+- Less likely to introduce structural bugs
+
+## Phase 1: Restructuring to Modern Layout
+
+This is what you should do **now**, while still running CakePHP 2.x.
+
+### Directory Structure Comparison
+
+**Before: Traditional CakePHP 2.x**
+```
+your-project/
+├── app/
+│   ├── Config/          (uppercase, nested)
+│   ├── Controller/
+│   ├── Model/
+│   ├── View/           (templates + helpers mixed)
+│   ├── Test/
+│   ├── Plugin/
+│   ├── Vendor/
+│   └── tmp/
+│       └── logs/
+├── vendors/
+└── ...
+```
+
+**After: Modern Structure (CakePHP 5.x Ready)**
+```
+your-project/
+├── config/             (lowercase, top-level)
+├── src/                (all PHP code)
+│   ├── Controller/
+│   ├── Model/
+│   └── View/          (Helper classes only)
+├── templates/          (all .ctp files, separated)
+├── tests/              (lowercase, top-level)
+├── plugins/            (Composer-managed)
+├── vendor/             (standard Composer)
+├── logs/               (separated from tmp/)
+├── tmp/
+├── bin/
+│   └── cake
+└── webroot/
+```
+
+### File Migration Map
+
+Use this table to migrate your files from traditional structure to modern structure:
+
+| From (Traditional)           | To (Modern)                       |
+|------------------------------|-----------------------------------|
+| `app/Config/*`               | `config/*`                        |
+| `app/Controller/*`           | `src/Controller/*`                |
+| `app/Model/*`                | `src/Model/*`                     |
+| `app/View/**/*.ctp`          | `templates/**/*.ctp`              |
+| `app/View/Helper/*`          | `src/View/Helper/*`               |
+| `app/Console/*`              | `src/Console/*`                   |
+| `app/Console/cake`           | `bin/cake`                        |
+| `app/Lib/*`                  | `src/Lib/*`                       |
+| `app/Locale/*`               | `src/Locale/*`                    |
+| `app/Test/*`                 | `tests/*`                         |
+| `app/Plugin/*`               | `plugins/*` (use Composer)        |
+| `app/Vendor/*`               | `vendor/*` (use Composer)         |
+| `app/tmp/logs/*`             | `logs/*`                          |
+| `app/tmp/*`                  | `tmp/*`                           |
+| `app/webroot/*`              | `webroot/*`                       |
+
+### Migration Steps
+
+#### 1. Update composer.json
+
+```json
+{
+    "require": {
+        "php": "^8.0",
+        "friendsofcake2/cakephp": "^2.10"
+    },
+    "config": {
+        "vendor-dir": "vendor/",
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "plugins/{$name}/": ["type:cakephp-plugin"]
+        }
+    }
+}
+```
+
+#### 2. Update Bootstrap Path Definitions
+
+Copy or reference this skeleton's `webroot/index.php`, `webroot/test.php`, and `bin/cake` to update the path definitions in your project:
+
+```php
+define('ROOT', dirname(__DIR__));
+define('APP_DIR', 'src');                     // Changed from 'app'
+define('APP', ROOT . DS . APP_DIR . DS);
+define('CONFIG', ROOT . DS . 'config' . DS);  // Top-level, lowercase
+define('TESTS', ROOT . DS . 'tests' . DS);    // Top-level, lowercase
+define('TMP', ROOT . DS . 'tmp' . DS);        // Top-level
+define('LOGS', ROOT . DS . 'logs' . DS);      // Separated from tmp/
+define('VENDORS', ROOT . DS . 'vendor' . DS); // Standard Composer
+```
+
+Refer to this skeleton's implementation files for complete examples.
+
+#### 3. Migrate Files
+
+Move files according to the File Migration Map above. You can do this gradually:
+
+1. Configuration files: `app/Config/*` → `config/*`
+2. PHP code: `app/Controller/*`, `app/Model/*` → `src/`
+3. Templates: `app/View/**/*.ctp` → `templates/`
+4. Tests: `app/Test/*` → `tests/`
+5. Dependencies: Use Composer for plugins and vendors
+
+#### 4. Verify Your Application Still Works
+
+The [friendsofcake2/cakephp](https://github.com/friendsofcake2/cakephp) core automatically supports this modern structure with `App::uses()` and class loading, so your existing CakePHP 2.x code should work without modifications.
+
+## Phase 2: Upgrading to CakePHP 5.x
+
+Once you've completed Phase 1, upgrading to CakePHP 5.x becomes much simpler:
+
+✅ **Directory structure is already correct** - No need to reorganize files
+✅ **Templates already separated** - No need to move `.ctp` files
+✅ **Modern Composer setup** - Already using `vendor/` and `plugins/`
+
+**You only need to focus on:**
+- Updating `composer.json` to require CakePHP 5.x
+- Updating code for CakePHP 5.x API changes
+- Testing and fixing compatibility issues
+
+Refer to the [CakePHP 5.x Migration Guide](https://book.cakephp.org/5/en/appendices/5-0-migration-guide.html) for framework-specific changes.
 
 ## Requirements
 
-* PHP 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
-* Composer
-* Database: MySQL 5.6+, PostgreSQL 9.4+, SQLite 3, or Microsoft SQL Server 2022+
-* Required PHP extensions:
-  * `mbstring` (optional, with Symfony polyfill fallback)
-  * `intl` (optional, with Symfony polyfill fallback)
-  * `openssl`
-  * Appropriate PDO extension for your database (`pdo_mysql`, `pdo_pgsql`, `pdo_sqlite`, or `pdo_sqlsrv`)
+- PHP 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- Composer
+- Database: MySQL 5.6+, PostgreSQL 9.4+, SQLite 3, or SQL Server 2022+
+- PHP Extensions: `mbstring`, `intl`, `openssl`, PDO driver for your database
 
-For detailed requirements, see [friendsofcake2/cakephp](https://github.com/friendsofcake2/cakephp#requirements--compatibility).
+See [friendsofcake2/cakephp requirements](https://github.com/friendsofcake2/cakephp#requirements--compatibility) for details.
 
-## Installation
+## Technical Implementation
 
-1. Create a new project using Composer:
+This modern directory structure works with CakePHP 2.x through custom path configuration in bootstrap files (`webroot/index.php`, `webroot/test.php`, `bin/cake`).
 
-```bash
-composer create-project friendsofcake2/app [app_name]
-```
+The [friendsofcake2/cakephp](https://github.com/friendsofcake2/cakephp) core has been enhanced to:
+- Automatically load classes from `src/Controller/`, `src/Model/`, etc. with `App::uses()`
+- Find templates in the `templates/` directory
+- Support both modern and traditional file locations during migration
 
-2. Configure your database connection in `Config/database.php`:
-
-```bash
-cp Config/database.php.default Config/database.php
-```
-
-Edit the file with your database credentials.
-
-3. Set up directory permissions:
-
-```bash
-chmod -R 777 tmp
-```
-
-4. Configure your web server to point to the `webroot` directory.
-
-## Directory Structure
-
-```
-.
-├── Config/          Configuration files
-├── Console/         Console commands and shells
-├── Controller/      Application controllers
-├── Lib/             Application libraries
-├── Locale/          Localization files
-├── Model/           Application models
-├── Plugin/          CakePHP plugins
-├── Test/            Unit and integration tests
-├── Vendor/          Third-party libraries (managed by Composer)
-├── View/            View templates
-├── tmp/             Temporary files (cache, logs, sessions)
-└── webroot/         Public web root (index.php, assets)
-```
+**You don't need to modify your application code** - the framework handles the path mapping automatically.
 
 ## Development
 
 ### Running Tests
 
 ```bash
-./Console/cake test app AllTests
+./bin/cake test app AllTests
 ```
 
 Or with PHPUnit:
@@ -81,7 +214,7 @@ Or with PHPUnit:
 
 ### Code Standards
 
-This project follows CakePHP coding standards. Check your code with:
+Check your code against CakePHP coding standards:
 
 ```bash
 ./vendor/bin/phpcs
@@ -89,7 +222,8 @@ This project follows CakePHP coding standards. Check your code with:
 
 ## Documentation
 
-* [Original CakePHP 2.x Documentation](https://book.cakephp.org/2.0/en/)
+- [CakePHP 2.x Documentation](https://book.cakephp.org/2.0/en/)
+- [CakePHP 5.x Migration Guide](https://book.cakephp.org/5/en/appendices/5-0-migration-guide.html)
 
 ## License
 
@@ -99,5 +233,5 @@ MIT License. See [LICENSE](LICENSE) file for details.
 
 This is a community-maintained fork of CakePHP 2.x. For issues and questions:
 
-* [friendsofcake2/cakephp Issues](https://github.com/friendsofcake2/cakephp/issues)
-* [friendsofcake2/app Issues](https://github.com/friendsofcake2/app/issues)
+- [friendsofcake2/cakephp Issues](https://github.com/friendsofcake2/cakephp/issues)
+- [friendsofcake2/app Issues](https://github.com/friendsofcake2/app/issues)

@@ -36,28 +36,47 @@ if (!defined('DS')) {
  * The full path to the directory which holds "app", WITHOUT a trailing DS.
  */
 if (!defined('ROOT')) {
-    define('ROOT', dirname(__DIR__, 2));
+    define('ROOT', dirname(__DIR__));
 }
 
 /**
  * The actual directory name for the "app".
  */
 if (!defined('APP_DIR')) {
-    define('APP_DIR', basename(dirname(__DIR__)));
+    define('APP_DIR', 'src');
+}
+
+if (!defined('APP')) {
+    define('APP', ROOT . DS . APP_DIR . DS);
 }
 
 /**
- * Config Directory
+ * Path to the config Directory
  */
 if (!defined('CONFIG')) {
-    define('CONFIG', ROOT . DS . APP_DIR . DS . 'Config' . DS);
+    define('CONFIG', ROOT . DS . 'config' . DS);
 }
 
 /**
- * Path to the vendors directory.
+ * Path to the tests Directory
+ */
+if (!defined('TESTS')) {
+    define('TESTS', ROOT . DS . 'tests' . DS);
+}
+
+if (!defined('TMP')) {
+    define('TMP', ROOT . DS . 'tmp' . DS);
+}
+
+if (!defined('LOGS')) {
+    define('LOGS', ROOT . DS . 'logs' . DS);
+}
+
+/**
+ * Path to the vendor directory.
  */
 if (!defined('VENDORS')) {
-    define('VENDORS', ROOT . DS . 'vendors' . DS);
+    define('VENDORS', ROOT . DS . 'vendor' . DS);
 }
 
 /**

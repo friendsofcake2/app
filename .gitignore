@@ -4,10 +4,11 @@
 !/tmp/*/
 /tmp/*/*
 !/tmp/*/empty
-/Plugin/*
-!/Plugin/empty
-/Vendor/*
-!/Vendor/empty
+/app/Plugin/*
+!/app/Plugin/empty
+/app/Vendor/*
+!/app/Vendor/empty
+/vendor
 *.mo
 .phpunit.result.cache
 /phpunit.xml
