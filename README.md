@@ -6,46 +6,38 @@
 
 A reference implementation for CakePHP 2.x applications using a modern, CakePHP 5.x-compatible directory structure.
 
-> [!IMPORTANT]
-> **This skeleton demonstrates a two-phase migration strategy:**
->
-> 1. **Phase 1 (Now):** Restructure your CakePHP 2.x app to use this modern directory layout - while still running CakePHP 2.x
-> 2. **Phase 2 (Future):** Upgrade to CakePHP 5.x - with minimal structural changes needed
->
-> This approach separates "directory restructuring" from "framework upgrade", reducing risk and complexity.
-
 > [!WARNING]
 > **CakePHP 2.x is for legacy maintenance only.**
 > For new projects, use [CakePHP 5.x](https://cakephp.org/) instead.
 
-## Two-Phase Migration Strategy
+## Planning to migrate to CakePHP 5.x?
 
-### Why Two Phases?
+If you're planning to upgrade to CakePHP 5.x in the future, you can **prepare now** by adopting the modern directory structure while still on CakePHP 2.x:
 
-Migrating directly from traditional CakePHP 2.x to CakePHP 5.x means tackling two massive changes simultaneously:
+**Traditional migration approach (harder):**
+```
+CakePHP 2.x → CakePHP 5.x
+(change everything at once: code + folder structure + APIs)
+```
 
-1. **Directory restructuring** - `app/Config/` → `config/`, `app/View/` → `templates/`, etc.
-2. **Framework API changes** - Updated class names, methods, patterns, etc.
+**New gradual migration approach (easier):**
+```
+Step 1: CakePHP 2.x with traditional structure
+        ↓ (modernize folder structure only)
+Step 2: CakePHP 2.x with CakePHP 5.x-style structure ← You can stop here
+        ↓ (upgrade code only)
+Step 3: CakePHP 5.x with CakePHP 5.x-style structure
+```
 
-**Doing both at once is risky and time-consuming.**
+**Benefits:**
+- ✅ **Smaller, manageable changes**: Separate folder restructuring from code changes
+- ✅ **Test incrementally**: Verify each step works before moving to the next
+- ✅ **Reduced risk**: You can stay on Step 2 indefinitely if needed
+- ✅ **Team-friendly**: Easier for teams to understand and review smaller changes
 
-### The Better Approach
+## Restructuring to Modern Layout (Step 2)
 
-**Phase 1: Restructure (CakePHP 2.x → CakePHP 2.x)**
-- Keep using CakePHP 2.x (same APIs, same behavior)
-- Only change directory structure to match CakePHP 5.x layout
-- Lower risk - app continues to work the same way
-- Can be done gradually over time
-
-**Phase 2: Upgrade (CakePHP 2.x → CakePHP 5.x)**
-- Structure is already correct
-- Focus only on code/API changes
-- Much faster and easier
-- Less likely to introduce structural bugs
-
-## Phase 1: Restructuring to Modern Layout
-
-This is what you should do **now**, while still running CakePHP 2.x.
+This skeleton shows you how to achieve **Step 2** - running CakePHP 2.x with a modern folder structure.
 
 ### Directory Structure Comparison
 
@@ -163,18 +155,21 @@ Move files according to the File Migration Map above. You can do this gradually:
 
 The [friendsofcake2/cakephp](https://github.com/friendsofcake2/cakephp) core automatically supports this modern structure with `App::uses()` and class loading, so your existing CakePHP 2.x code should work without modifications.
 
-## Phase 2: Upgrading to CakePHP 5.x
+## Upgrading to CakePHP 5.x (Step 3)
 
-Once you've completed Phase 1, upgrading to CakePHP 5.x becomes much simpler:
+Once you've completed Step 2 (modern folder structure with CakePHP 2.x), upgrading to CakePHP 5.x becomes much simpler:
 
-✅ **Directory structure is already correct** - No need to reorganize files
-✅ **Templates already separated** - No need to move `.ctp` files
-✅ **Modern Composer setup** - Already using `vendor/` and `plugins/`
+**What's already done:**
+- ✅ Directory structure is already correct - No need to reorganize files
+- ✅ Templates already separated - No need to move `.ctp` files
+- ✅ Modern Composer setup - Already using `vendor/` and `plugins/`
 
-**You only need to focus on:**
-- Updating `composer.json` to require CakePHP 5.x
-- Updating code for CakePHP 5.x API changes
-- Testing and fixing compatibility issues
+**What you need to do:**
+- Update `composer.json` to require CakePHP 5.x
+- Update code for CakePHP 5.x API changes
+- Test and fix compatibility issues
+
+**The key advantage:** You can focus 100% on code changes, not structural changes.
 
 Refer to the [CakePHP 5.x Migration Guide](https://book.cakephp.org/5/en/appendices/5-0-migration-guide.html) for framework-specific changes.
 
