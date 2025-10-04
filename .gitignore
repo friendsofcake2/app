@@ -4,6 +4,8 @@
 !/tmp/*/
 /tmp/*/*
 !/tmp/*/empty
+/tmp/*/*/*
+!/tmp/*/*/empty
 /app/Plugin/*
 !/app/Plugin/empty
 /app/Vendor/*
