@@ -16,75 +16,15 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-/**
- * Use the DS to separate the directories in other defines
- */
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
 
-/**
- * These defines should only be edited if you have CakePHP installed in
- * a directory layout other than the way it is distributed.
- * When using custom settings be sure to use the DS and do not add a trailing DS.
- */
-
-/**
- * The full path to the directory which holds "app", WITHOUT a trailing DS.
- */
-if (!defined('ROOT')) {
-    define('ROOT', dirname(__DIR__));
-}
-
-/**
- * The actual directory name for the "app".
- */
-if (!defined('APP_DIR')) {
-    define('APP_DIR', 'src');
-}
-
-if (!defined('APP')) {
-    define('APP', ROOT . DS . APP_DIR . DS);
-}
-
-/**
- * Path to the config Directory
- */
-if (!defined('CONFIG')) {
-    define('CONFIG', ROOT . DS . 'config' . DS);
-}
-
-/**
- * Path to the tests Directory
- */
-if (!defined('TESTS')) {
-    define('TESTS', ROOT . DS . 'tests' . DS);
-}
-
-if (!defined('TMP')) {
-    define('TMP', ROOT . DS . 'tmp' . DS);
-}
-
-if (!defined('LOGS')) {
-    define('LOGS', ROOT . DS . 'logs' . DS);
-}
-
-/**
- * Path to the vendor directory.
- */
-if (!defined('VENDORS')) {
-    define('VENDORS', ROOT . DS . 'vendor' . DS);
-}
-
-/**
- * Editing below this line should NOT be necessary.
- * Change at your own risk.
- */
-if (!defined('WEBROOT_DIR')) {
-    define('WEBROOT_DIR', basename(__DIR__));
-}
-if (!defined('WWW_ROOT')) {
-    define('WWW_ROOT', __DIR__ . DS);
+if (!require_once dirname(__DIR__) . DS . 'config' . DS . 'define.php') {
+    trigger_error(
+        'Configuration file "config' . DS . 'define.php" could not be loaded. Please ensure this file exists and is readable.',
+        E_USER_ERROR,
+    );
 }
 
 // For the built-in server

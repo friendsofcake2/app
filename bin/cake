@@ -21,44 +21,11 @@ if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
 
-if (!defined('ROOT')) {
-    define('ROOT', dirname(__DIR__));
-}
-
-if (!defined('APP_DIR')) {
-    define('APP_DIR', 'src');
-}
-
-if (!defined('APP')) {
-    define('APP', ROOT . DS . APP_DIR . DS);
-}
-
-if (!defined('CONFIG')) {
-    define('CONFIG', ROOT . DS . 'config' . DS);
-}
-
-if (!defined('WEBROOT_DIR')) {
-    define('WEBROOT_DIR', 'webroot');
-}
-
-if (!defined('WWW_ROOT')) {
-    define('WWW_ROOT', ROOT . DS . WEBROOT_DIR . DS);
-}
-
-if (!defined('TESTS')) {
-    define('TESTS', ROOT . DS . 'tests' . DS);
-}
-
-if (!defined('TMP')) {
-    define('TMP', ROOT . DS . 'tmp' . DS);
-}
-
-if (!defined('LOGS')) {
-    define('LOGS', ROOT . DS . 'logs' . DS);
-}
-
-if (!defined('VENDORS')) {
-    define('VENDORS', ROOT . DS . 'vendor' . DS);
+if (!require_once dirname(__DIR__) . DS . 'config' . DS . 'define.php') {
+    trigger_error(
+            'Configuration file "config' . DS . 'define.php" could not be loaded. Please ensure this file exists and is readable.',
+            E_USER_ERROR,
+    );
 }
 
 if (!is_dir(VENDORS)) {
