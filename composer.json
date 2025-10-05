@@ -1,12 +1,12 @@
 {
-    "name": "friendsofcake2/app",
+    "name": "pieceofcake2/app",
     "description": "CakePHP 2 Application skeleton",
     "type": "project",
     "keywords": ["cakephp", "skeleton"],
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "friendsofcake2/cakephp": "^2.10"
+        "pieceofcake2/cakephp": "^2.10"
     },
     "require-dev": {
         "cakephp/cakephp-codesniffer": "^5.0",

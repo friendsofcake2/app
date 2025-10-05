@@ -1,8 +1,8 @@
 # CakePHP 2.x Application Skeleton
 
-[![GitHub License](https://img.shields.io/github/license/friendsofcake2/app?label=License)](LICENSE)
-[![Packagist Version](https://img.shields.io/packagist/v/friendsofcake2/app?label=Packagist)](https://packagist.org/packages/friendsofcake2/app)
-[![PHP](https://img.shields.io/packagist/dependency-v/friendsofcake2/app/php?logo=php&logoColor=%23FFFFFF&label=PHP&labelColor=%23777BB4&color=%23FFFFFF)](https://packagist.org/packages/friendsofcake2/app)
+[![GitHub License](https://img.shields.io/github/license/pieceofcake2/app?label=License)](LICENSE)
+[![Packagist Version](https://img.shields.io/packagist/v/pieceofcake2/app?label=Packagist)](https://packagist.org/packages/pieceofcake2/app)
+[![PHP](https://img.shields.io/packagist/dependency-v/pieceofcake2/app/php?logo=php&logoColor=%23FFFFFF&label=PHP&labelColor=%23777BB4&color=%23FFFFFF)](https://packagist.org/packages/pieceofcake2/app)
 
 A reference implementation for CakePHP 2.x applications using a modern, CakePHP 5.x-compatible directory structure.
 
@@ -81,23 +81,23 @@ your-project/
 
 Use this table to migrate your files from traditional structure to modern structure:
 
-| From (Traditional)           | To (Modern)                       |
-|------------------------------|-----------------------------------|
-| `app/Config/*`               | `config/*`                        |
-| `app/Controller/*`           | `src/Controller/*`                |
-| `app/Model/*`                | `src/Model/*`                     |
-| `app/View/**/*.ctp`          | `templates/**/*.ctp`              |
-| `app/View/Helper/*`          | `src/View/Helper/*`               |
-| `app/Console/*`              | `src/Console/*`                   |
-| `app/Console/cake`           | `bin/cake`                        |
-| `app/Lib/*`                  | `src/Lib/*`                       |
-| `app/Locale/*`               | `src/Locale/*`                    |
-| `app/Test/*`                 | `tests/*`                         |
-| `app/Plugin/*`               | `plugins/*` (use Composer)        |
-| `app/Vendor/*`               | `vendor/*` (use Composer)         |
-| `app/tmp/logs/*`             | `logs/*`                          |
-| `app/tmp/*`                  | `tmp/*`                           |
-| `app/webroot/*`              | `webroot/*`                       |
+| From (Traditional)           | To (Modern)                |
+|------------------------------|----------------------------|
+| `app/Config/*`               | `config/*`                 |
+| `app/Controller/*`           | `src/Controller/*`         |
+| `app/Model/*`                | `src/Model/*`              |
+| `app/View/**/*.ctp`          | `templates/**/*.ctp`       |
+| `app/View/Helper/*`          | `src/View/Helper/*`        |
+| `app/Console/*`              | `src/Console/*`            |
+| `app/Console/cake`           | `bin/cake`                 |
+| `app/Lib/*`                  | `src/Lib/*`                |
+| `app/Locale/*`               | `resources/locales/*`      |
+| `app/Test/*`                 | `tests/*`                  |
+| `app/Plugin/*`               | `plugins/*` (use Composer) |
+| `app/Vendor/*`               | `vendor/*` (use Composer)  |
+| `app/tmp/logs/*`             | `logs/*`                   |
+| `app/tmp/*`                  | `tmp/*`                    |
+| `app/webroot/*`              | `webroot/*`                |
 
 ### Migration Steps
 
@@ -107,7 +107,7 @@ Use this table to migrate your files from traditional structure to modern struct
 {
     "require": {
         "php": "^8.0",
-        "friendsofcake2/cakephp": "^2.10"
+        "pieceofcake2/cakephp": "^2.10"
     },
     "config": {
         "vendor-dir": "vendor/",
@@ -153,7 +153,7 @@ Move files according to the File Migration Map above. You can do this gradually:
 
 #### 4. Verify Your Application Still Works
 
-The [friendsofcake2/cakephp](https://github.com/friendsofcake2/cakephp) core automatically supports this modern structure with `App::uses()` and class loading, so your existing CakePHP 2.x code should work without modifications.
+The [pieceofcake2/cakephp](https://github.com/pieceofcake2/cakephp) core automatically supports this modern structure with `App::uses()` and class loading, so your existing CakePHP 2.x code should work without modifications.
 
 ## Upgrading to CakePHP 5.x (Step 3)
 
@@ -180,13 +180,13 @@ Refer to the [CakePHP 5.x Migration Guide](https://book.cakephp.org/5/en/appendi
 - Database: MySQL 5.6+, PostgreSQL 9.4+, SQLite 3, or SQL Server 2022+
 - PHP Extensions: `mbstring`, `intl`, `openssl`, PDO driver for your database
 
-See [friendsofcake2/cakephp requirements](https://github.com/friendsofcake2/cakephp#requirements--compatibility) for details.
+See [pieceofcake2/cakephp requirements](https://github.com/pieceofcake2/cakephp#requirements--compatibility) for details.
 
 ## Technical Implementation
 
 This modern directory structure works with CakePHP 2.x through custom path configuration in bootstrap files (`webroot/index.php`, `webroot/test.php`, `bin/cake`).
 
-The [friendsofcake2/cakephp](https://github.com/friendsofcake2/cakephp) core has been enhanced to:
+The [pieceofcake2/cakephp](https://github.com/pieceofcake2/cakephp) core has been enhanced to:
 - Automatically load classes from `src/Controller/`, `src/Model/`, etc. with `App::uses()`
 - Find templates in the `templates/` directory
 - Support both modern and traditional file locations during migration
@@ -228,5 +228,5 @@ MIT License. See [LICENSE](LICENSE) file for details.
 
 This is a community-maintained fork of CakePHP 2.x. For issues and questions:
 
-- [friendsofcake2/cakephp Issues](https://github.com/friendsofcake2/cakephp/issues)
-- [friendsofcake2/app Issues](https://github.com/friendsofcake2/app/issues)
+- [pieceofcake2/cakephp Issues](https://github.com/pieceofcake2/cakephp/issues)
+- [pieceofcake2/app Issues](https://github.com/pieceofcake2/app/issues)
