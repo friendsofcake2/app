@@ -62,19 +62,21 @@ your-project/
 **After: Modern Structure (CakePHP 5.x Ready)**
 ```
 your-project/
+├── bin/
+│   └── cake
 ├── config/             (lowercase, top-level)
 ├── src/                (all PHP code)
 │   ├── Controller/
 │   ├── Model/
-│   └── View/          (Helper classes only)
+│   └── View/           (Helper classes only)
 ├── templates/          (all .ctp files, separated)
+├── resources/
+│   └── locales/
 ├── tests/              (lowercase, top-level)
 ├── plugins/            (Composer-managed)
 ├── vendor/             (standard Composer)
 ├── logs/               (separated from tmp/)
 ├── tmp/
-├── bin/
-│   └── cake
 └── webroot/
 ```
 
