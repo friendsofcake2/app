@@ -78,4 +78,12 @@
     <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint">
         <include-pattern>tests/Case/*</include-pattern>
     </rule>
+
+    <rule ref="Squiz.Classes.ValidClassName.NotPascalCase">
+        <exclude-pattern>config/database.php</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.PHP.NonExecutableCode.Unreachable">
+        <exclude-pattern>config/acl.ini.php</exclude-pattern>
+    </rule>
 </ruleset>
