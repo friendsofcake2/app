@@ -10,7 +10,8 @@
     },
     "require-dev": {
         "cakephp/cakephp-codesniffer": "^5.0",
-        "phpunit/phpunit": "^9.6"
+        "phpunit/phpunit": "^9.6",
+        "pieceofcake2/bake": "^1.0"
     },
     "config": {
         "sort-packages": true,
