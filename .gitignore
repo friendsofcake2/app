@@ -1,19 +1,25 @@
 # User specific & automatically generated files #
 #################################################
-/tmp/*
-!/tmp/*/
-/tmp/*/*
-!/tmp/*/empty
-/tmp/*/*/*
-!/tmp/*/*/empty
+/tmp/cache/*
+!/tmp/cache/*/
+/tmp/cache/*/*
+!/tmp/cache/*/.gitkeep
+/tmp/sessions/*
+!/tmp/sessions/.gitkeep
+/tmp/tests/*
+!/tmp/tests/.gitkeep
+/logs/*
+!/logs/.gitkeep
 /app/Plugin/*
 !/app/Plugin/empty
 /app/Vendor/*
 !/app/Vendor/empty
 /vendor
+/plugins
 *.mo
 .phpunit.result.cache
 /phpunit.xml
+composer.lock
 
 # IDE and editor specific files #
 #################################
