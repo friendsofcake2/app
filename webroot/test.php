@@ -23,12 +23,14 @@ if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
 
-if (!require_once dirname(__DIR__) . DS . 'config' . DS . 'define.php') {
+if (!is_file(dirname(__DIR__) . DS . 'config' . DS . 'define.php')) {
     trigger_error(
-        'Configuration file "config' . DS . 'define.php" could not be loaded. Please ensure this file exists and is readable.',
-        E_USER_ERROR,
+        'Configuration file "config' . DS . 'define.php" could not be loaded. ' .
+        'Please ensure this file exists and is readable.',
+        E_USER_ERROR
     );
 }
+require_once dirname(__DIR__) . DS . 'config' . DS . 'define.php';
 
 if (!is_dir(VENDORS)) {
     trigger_error(
@@ -37,7 +39,6 @@ if (!is_dir(VENDORS)) {
         E_USER_ERROR,
     );
 }
-
 if (!is_file(VENDORS . 'autoload.php')) {
     trigger_error(
         'Composer autoload file not found at "' . VENDORS . 'autoload.php". ' .
@@ -45,21 +46,11 @@ if (!is_file(VENDORS . 'autoload.php')) {
         E_USER_ERROR,
     );
 }
-
 require_once VENDORS . 'autoload.php';
 
-if (!require_once 'Cake' . DS . 'bootstrap.php') {
-    trigger_error(
-        'CakePHP core could not be found. ' .
-        'Please run "composer require pieceofcake2/cakephp" to install CakePHP core.',
-        E_USER_ERROR,
-    );
-}
-
+require_once 'Cake' . DS . 'bootstrap.php';
 if (Configure::read('debug') < 1) {
     throw new NotFoundException(__d('cake_dev', 'Debug setting does not allow access to this URL.'));
 }
-
 require_once CAKE . 'TestSuite' . DS . 'CakeTestSuiteDispatcher.php';
-
 CakeTestSuiteDispatcher::run();
