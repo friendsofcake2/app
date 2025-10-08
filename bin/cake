@@ -47,4 +47,4 @@ if (!is_file(VENDORS . 'autoload.php')) {
 require_once VENDORS . 'autoload.php';
 
 require_once 'Cake' . DS . 'Console' . DS . 'ShellDispatcher.php';
-return ShellDispatcher::run($argv);
+ShellDispatcher::run($argv);

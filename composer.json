@@ -5,14 +5,14 @@
     "keywords": ["cakephp", "skeleton"],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
-        "pieceofcake2/cakephp": "^2.10"
+        "php": ">=8.0",
+        "pieceofcake2/cakephp": "^2.11"
     },
     "require-dev": {
         "cakephp/cakephp-codesniffer": "^5.0",
         "phpunit/phpunit": "^9.6",
         "pieceofcake2/bake": "^1.0",
-        "pieceofcake2/debug_kit": "^2.7"
+        "pieceofcake2/debug_kit": "^2.2"
     },
     "config": {
         "sort-packages": true,

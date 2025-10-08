@@ -56,8 +56,8 @@ require_once VENDORS . 'autoload.php';
 
 require_once 'Cake' . DS . 'bootstrap.php';
 App::uses('Dispatcher', 'Routing');
-$Dispatcher = new Dispatcher();
-$Dispatcher->dispatch(
+$dispatcher = new Dispatcher();
+$dispatcher->dispatch(
     new CakeRequest(),
     new CakeResponse(),
 );
