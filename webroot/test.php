@@ -16,6 +16,8 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+use Composer\InstalledVersions;
+
 set_time_limit(0);
 ini_set('display_errors', 1);
 
@@ -48,9 +50,9 @@ if (!is_file(VENDORS . 'autoload.php')) {
 }
 require_once VENDORS . 'autoload.php';
 
-require_once 'Cake' . DS . 'bootstrap.php';
+require_once InstalledVersions::getInstallPath('pieceofcake2/cakephp') . DS . 'src' . DS . 'Cake' . DS . 'bootstrap.php';
+
 if (Configure::read('debug') < 1) {
     throw new NotFoundException(__d('cake_dev', 'Debug setting does not allow access to this URL.'));
 }
-require_once CAKE . 'TestSuite' . DS . 'CakeTestSuiteDispatcher.php';
 CakeTestSuiteDispatcher::run();

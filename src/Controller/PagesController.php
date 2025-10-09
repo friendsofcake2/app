@@ -18,8 +18,6 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('AppController', 'Controller');
-
 /**
  * Static content controller
  *
@@ -40,15 +38,14 @@ class PagesController extends AppController
     /**
      * Displays a view
      *
+     * @param string ...$path
      * @return CakeResponse|null
      * @throws ForbiddenException When a directory traversal attempt.
      * @throws NotFoundException When the view file could not be found
-     *   or MissingViewException in debug mode.
+     * @throws MissingViewException When the view file could not be foundin debug mode.
      */
-    public function display()
+    public function display(string ...$path)
     {
-        $path = func_get_args();
-
         $count = count($path);
         if (!$count) {
             return $this->redirect('/');
@@ -70,7 +67,7 @@ class PagesController extends AppController
         $this->set(compact('page', 'subpage', 'title_for_layout'));
 
         try {
-            $this->render(implode('/', $path));
+            return $this->render(implode('/', $path));
         } catch (MissingViewException $e) {
             if (Configure::read('debug')) {
                 throw $e;

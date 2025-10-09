@@ -109,8 +109,11 @@ Use this table to migrate your files from traditional structure to modern struct
 ```json
 {
     "require": {
-        "php": "^8.0",
-        "pieceofcake2/cakephp": "^2.10"
+        "php": ">=8.0",
+        "pieceofcake2/cakephp": "^2.12"
+    },
+    "autoload": {
+        "classmap": ["src/"]
     },
     "config": {
         "vendor-dir": "vendor/",
@@ -157,6 +160,39 @@ Move files according to the File Migration Map above. You can do this gradually:
 #### 4. Verify Your Application Still Works
 
 The [pieceofcake2/cakephp](https://github.com/pieceofcake2/cakephp) core automatically supports this modern structure with `App::uses()` and class loading, so your existing CakePHP 2.x code should work without modifications.
+
+#### 5. Leverage Composer Autoloading (Optional)
+
+Once Composer's autoload is configured in `composer.json`, you can remove `App::uses()` calls from your code:
+
+```json
+"autoload": {
+    "classmap": ["src/"]
+}
+```
+
+After running `composer dump-autoload`, you can safely remove `App::uses()` statements from your controllers, models, helpers, and shells.
+
+> [!IMPORTANT]
+> You must run `composer dump-autoload` every time you create a new class file. Composer's classmap autoloader needs to be regenerated to recognize new classes.
+
+For example:
+
+```php
+// Before
+App::uses('AppController', 'Controller');
+
+class UsersController extends AppController {
+    // ...
+}
+
+// After (with Composer autoload)
+class UsersController extends AppController {
+    // ...
+}
+```
+
+**Note:** Plugins that don't support Composer autoloading will still require `App::uses()` or `CakePlugin::load()` to function properly.
 
 ## Upgrading to CakePHP 5.x (Step 3)
 

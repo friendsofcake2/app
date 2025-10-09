@@ -8,8 +8,6 @@
 if (!Configure::read('debug')):
     throw new NotFoundException();
 endif;
-
-App::uses('Debugger', 'Utility');
 ?>
 <h2><?php echo __d('cake_dev', 'Release Notes for CakePHP %s.', Configure::version()); ?></h2>
 <p>
@@ -80,7 +78,6 @@ endif;
 </p>
 <?php
 if (isset($filePresent)):
-    App::uses('ConnectionManager', 'Model');
     try {
         $connected = ConnectionManager::getDataSource('default');
     } catch (Exception $connectionError) {
@@ -112,7 +109,6 @@ if (isset($filePresent)):
 <?php
 endif;
 
-App::uses('Validation', 'Utility');
 if (!Validation::alphaNumeric('cakephp')):
     echo '<p><span class="notice">';
         echo __d('cake_dev', 'PCRE has not been compiled with Unicode support.');
