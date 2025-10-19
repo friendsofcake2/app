@@ -21,6 +21,7 @@
 /phpunit.xml
 composer.lock
 config/database.php
+config/email.php
 
 # IDE and editor specific files #
 #################################
