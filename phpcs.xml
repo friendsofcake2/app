@@ -6,6 +6,7 @@
     <arg value="ps"/>
     <arg name="colors"/>
     <arg name="parallel" value="100"/>
+    <arg name="extensions" value="php,php.default"/>
 
     <file>./config</file>
     <file>./src</file>
