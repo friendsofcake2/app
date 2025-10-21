@@ -66,38 +66,38 @@
  */
 class DATABASE_CONFIG {
 
-	public $default = array(
-		'datasource' => 'Database/Mysql',
-		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'database_name',
-		'prefix' => '',
-		//'encoding' => 'utf8',
+    public $default = array(
+        'datasource' => 'Database/Mysql',
+        'persistent' => false,
+        'host' => 'localhost',
+        'login' => 'user',
+        'password' => 'password',
+        'database' => 'database_name',
+        'prefix' => '',
+        //'encoding' => 'utf8',
 
-		// PDO MySQL/SQLite Driver had the following backward incompatible changes in PHP 8.1
-		// * https://www.php.net/manual/en/migration81.incompatible.php#migration81.incompatible.pdo.mysql
-		// * https://www.php.net/manual/en/migration81.incompatible.php#migration81.incompatible.pdo.sqlite
-		// If under PHP 8.1 and didn't use the following flags, adding them will cause integer and float columns
-		// in the result set to be strings as before.
-		//	'flags' => array(
-		//		PDO::ATTR_STRINGIFY_FETCHES => true
-		//	)
-	);
+        // PDO MySQL/SQLite Driver had the following backward incompatible changes in PHP 8.1
+        // * https://www.php.net/manual/en/migration81.incompatible.php#migration81.incompatible.pdo.mysql
+        // * https://www.php.net/manual/en/migration81.incompatible.php#migration81.incompatible.pdo.sqlite
+        // If under PHP 8.1 and didn't use the following flags, adding them will cause integer and float columns
+        // in the result set to be strings as before.
+        //    'flags' => array(
+        //        PDO::ATTR_STRINGIFY_FETCHES => true
+        //    )
+    );
 
-	public $test = array(
-		'datasource' => 'Database/Mysql',
-		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'test_database_name',
-		'prefix' => '',
-		//'encoding' => 'utf8',
+    public $test = array(
+        'datasource' => 'Database/Mysql',
+        'persistent' => false,
+        'host' => 'localhost',
+        'login' => 'user',
+        'password' => 'password',
+        'database' => 'test_database_name',
+        'prefix' => '',
+        //'encoding' => 'utf8',
 
-		//	'flags' => array(
-		//		PDO::ATTR_STRINGIFY_FETCHES => true
-		//	)
-	);
+        //    'flags' => array(
+        //        PDO::ATTR_STRINGIFY_FETCHES => true
+        //    )
+    );
 }
