@@ -31,7 +31,7 @@ class PagesController extends AppController
     /**
      * This controller does not use a model
      *
-     * @var array
+     * @var array<string>
      */
     public $uses = [];
 
@@ -42,7 +42,7 @@ class PagesController extends AppController
      * @return CakeResponse|null
      * @throws ForbiddenException When a directory traversal attempt.
      * @throws NotFoundException When the view file could not be found
-     * @throws MissingViewException When the view file could not be foundin debug mode.
+     * @throws MissingViewException When the view file could not be found in debug mode.
      */
     public function display(string ...$path)
     {
